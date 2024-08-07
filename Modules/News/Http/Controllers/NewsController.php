@@ -5,7 +5,7 @@ namespace Modules\News\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\User;
+use App\Article;
 
 class NewsController extends Controller
 {
@@ -15,7 +15,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news::index');
+        $newsArticles = Article::where('type', true)->get(); // 1 for news
+        // dd(Article::get());
+
+        return view('news::index', compact('newsArticles'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Modules\Tour\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Article;
 
 class TourController extends Controller
 {
@@ -14,7 +15,8 @@ class TourController extends Controller
      */
     public function index()
     {
-        return view('tour::index');
+        $tourArticles = Article::where('type', 0)->get(); // 0 for tour
+        return view('tour::index', compact('tourArticles'));
     }
 
     /**

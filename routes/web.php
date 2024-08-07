@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\User;
+use App\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,11 @@ use App\User;
 */
 
 Route::get('/', function () {
-    
-    return view('welcome');
+    $newsArticles = Article::where('type', true)->get(); // 1 for news
+    return view('news::index',compact('newsArticles'));
 });
+Route::get('/tour', function () {
+    $tourArticles = Article::where('type', false)->get(); // 1 for tour
+    return view('tour::index',compact('tourArticles'));
+});
+
