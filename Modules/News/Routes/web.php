@@ -1,5 +1,5 @@
 <?php
-
+use Modules\News\Http\Controllers\NewsController;
 
 
 /*
@@ -13,6 +13,10 @@
 |
 */
 
-Route::prefix('news')->group(function() {
-    Route::get('/', 'NewsController@index');
+// Protected routes
+Route::middleware('auth.redirect')->group(function () {
+    Route::prefix('news')->group(function() {
+        Route::get('/', [NewsController::class, 'index'])->name('news.index');
+        Route::get('/{id}', [NewsController::class, 'show'])->name('news.show');
+    });
 });

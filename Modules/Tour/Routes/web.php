@@ -1,5 +1,6 @@
 <?php
 
+use Modules\Tour\Http\Controllers\TourController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +12,10 @@
 |
 */
 
-Route::prefix('tour')->group(function() {
-    Route::get('/', 'TourController@index');
+// Protected routes
+Route::middleware('auth.redirect')->group(function () {
+    Route::prefix('tour')->group(function() {
+        Route::get('/', [TourController::class, 'index'])->name('tour.index');
+        Route::get('/{id}', [TourController::class, 'show'])->name('tour.show');
+    });
 });
