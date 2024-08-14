@@ -1,7 +1,4 @@
 @extends('layouts.master')
-@section('title')
-Tour Article
-@endsection
 @section('content')
         <div class="album py-5 bg-light">
             <div class="container">
@@ -17,15 +14,6 @@ Tour Article
                     </div>
                     <a href="{{ url()->previous() }}" class="btn btn-secondary mt-3">Back</a>
                 </div>
-                {{-- <div class="container mt-5">
-                    <h1>{{ $article->title }}</h1>
-                    <p><strong>Excerpt:</strong> {{ $article->excerpt }}</p>
-                    <p><strong>Content:</strong> {{ $article->detail }}</p>
-                    @if ($article->img)
-                        <img src="{{ asset('storage/images/' . $article->img) }}" class="img-fluid" alt="Article Image">
-                    @endif
-                    <a href="{{ url()->previous() }}" class="btn btn-secondary mt-3">Back</a>
-                </div> --}}
             </div>
         </div>
 @endsection

@@ -28,10 +28,19 @@ class NewsController extends Controller
         $article = Article::findOrFail($id);
         return view('show', compact('article'));
     }
-    // public function create()
-    // {
-    //     return view('news::create');
-    // }
+    public function destroy($id)
+    {
+        $article = Article::findOrFail($id);
+        // Path to the image file
+        $imagePath = storage_path('app/public/images/' . $article->img);
+        // Check if the image is not the default 'no_image.jpg' and if it exists
+        if ($article->img !== 'no_image.jpg' && file_exists($imagePath)) {
+            unlink($imagePath); // Delete the image file
+        }
+        $article->delete(); // Delete the article from the database
+        return redirect()->route('news.index')->with('success', 'Article and associated image deleted successfully.');
+    }
+
 
     /**
      * Store a newly created resource in storage.

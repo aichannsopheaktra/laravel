@@ -72,7 +72,7 @@
     </header>
 
     <main role="main">
-
+        @if (request()->is('news') || request()->is('tour'))
         <section class="jumbotron text-center">
             <div class="container">
                 <h1 class="jumbotron-heading">@yield('title')</h1>
@@ -88,6 +88,10 @@
                 </p>
             </div>
         </section>
+    @endif
+
+
+
         @yield('show')
         @yield('content')
 
@@ -103,7 +107,22 @@
                     href="../../getting-started/">getting started guide</a>.</p>
         </div>
     </footer>
-
+    <script>
+        document.getElementById('img').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // load filename
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                // load img
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imgbox').setAttribute('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

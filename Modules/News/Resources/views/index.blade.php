@@ -20,7 +20,12 @@ News Article
                                         <div class="btn-group">
                                             <a href="{{ route('news.show', ['id' => $article->id]) }}" class="btn btn-sm btn-outline-secondary">View</a>
                                             @if (Auth::user() && Auth::user()->is_admin !== false)
-                                            <a href="{{ route('edit', ['id' => $article->id]) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                                <a href="{{ route('edit', ['id' => $article->id]) }}" class="btn btn-sm btn-outline-secondary mr-2">Edit</a>
+                                                <form action="{{ route('news.destroy', $article->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                                </form>
                                             @endif
                                         </div>
                                         <small class="text-muted">9 mins</small>

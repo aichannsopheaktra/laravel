@@ -12,9 +12,12 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "laminas/laminas-diactoros": "^2.4",
         "laravel/framework": "^7.29",
+        "laravel/passport": "~9.4",
         "laravel/tinker": "^2.5",
-        "nwidart/laravel-modules": "^7.4"
+        "nwidart/laravel-modules": "^7.4",
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

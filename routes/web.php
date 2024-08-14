@@ -27,12 +27,12 @@ Route::get('/', function () {
     return Auth::check() ? redirect('/news') : view('login');
 });
 
-
 // Routes for articles
-Route::prefix('/')->group(function () {
-    Route::get('/create', [ArticleController::class, 'create'])->name('create');
-    Route::post('/', [ArticleController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [ArticleController::class, 'update'])->name('update');
+Route::middleware('auth.redirect')->group(function () {
+    Route::prefix('/')->group(function () {
+        Route::get('/create', [ArticleController::class, 'create'])->name('create');
+        Route::post('/', [ArticleController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [ArticleController::class, 'update'])->name('update');
+    });
 });
-
